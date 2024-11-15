@@ -13,7 +13,7 @@ dataframe_descriptions = {
     "Experiment 2": "./plot_data/experiment_2/description_experiment_2.md",
     "Experiment 3": "./plot_data/experiment_3/description_experiment_3.md",
 }
-selected_dataframe = st.selectbox("Select Dataframe", options=list(dataframe_options.keys()))
+selected_dataframe = st.selectbox("Select Experiment", options=list(dataframe_options.keys()))
 
 @st.cache_data
 def load_data(path: str):
@@ -67,7 +67,7 @@ def interactive_boxplot(data):
     with checkbox_col:
         filter_options = to_select_data['quantifier'].unique()
         filter_options = sorted(filter_options, key=lambda x: ('+W' in x, x))
-        selected_filters = st.multiselect('Filter by Dataset', filter_options)
+        selected_filters = st.multiselect('Recommender methods', filter_options)
     to_select_data = to_select_data[to_select_data['quantifier'].isin(selected_filters)]
     filtered_data = pd.concat([default_data, to_select_data])
 
