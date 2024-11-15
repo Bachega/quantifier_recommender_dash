@@ -87,7 +87,7 @@ interactive_boxplot(data)
 
 # st.title("Experiment Explorer") 
 if "show_description" not in st.session_state:
-    st.session_state.show_description = False
+    st.session_state.show_description = True
 
 def toggle_description():
     st.session_state.show_description = not st.session_state.show_description
