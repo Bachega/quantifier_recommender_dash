@@ -66,7 +66,7 @@ def interactive_boxplot(data):
 
     with checkbox_col:
         filter_options = to_select_data['quantifier'].unique()
-        selected_filters = st.multiselect('Filter by Dataset', filter_options, default=filter_options)
+        selected_filters = st.multiselect('Filter by Dataset', filter_options)
     to_select_data = to_select_data[to_select_data['quantifier'].isin(selected_filters)]
     filtered_data = pd.concat([default_data, to_select_data])
 
