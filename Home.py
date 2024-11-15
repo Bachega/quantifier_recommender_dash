@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 st.set_page_config(layout="wide")
 
-st.title("Dataframe Explorer")
 dataframe_options = {
     "Experiment 1": "./plot_data/experiment_1/experiment_1.csv",
     "Experiment 2": "./plot_data/experiment_2/experiment_2.csv",
@@ -15,11 +14,6 @@ dataframe_descriptions = {
     "Experiment 3": "./plot_data/experiment_3/description_experiment_3.md",
 }
 selected_dataframe = st.selectbox("Select Dataframe", options=list(dataframe_options.keys()))
-
-description_file = dataframe_descriptions[selected_dataframe]
-with open(description_file, "r") as file:
-    description = file.read()
-st.markdown(description)
 
 @st.cache_data
 def load_data(path: str):
@@ -89,3 +83,19 @@ def interactive_boxplot(data):
 
 data = load_data(dataframe_options[selected_dataframe])
 interactive_boxplot(data)
+
+# st.title("Experiment Explorer") 
+if "show_description" not in st.session_state:
+    st.session_state.show_description = False
+
+def toggle_description():
+    st.session_state.show_description = not st.session_state.show_description
+
+if st.button("Experiment description"):
+    toggle_description()
+
+if st.session_state.show_description:
+    description_file = dataframe_descriptions[selected_dataframe]
+    with open(description_file, "r") as file:
+        description = file.read()
+    st.markdown(description)
