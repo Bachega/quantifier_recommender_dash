@@ -7,11 +7,25 @@ dataframe_options = {
     "Experiment 1": "./plot_data/experiment_1/experiment_1.csv",
     "Experiment 2": "./plot_data/experiment_2/experiment_2.csv",
     "Experiment 3": "./plot_data/experiment_3/experiment_3.csv",
+    "Experiment 4": "./plot_data/experiment_4/experiment_4.csv",
+    "Experiment 5": "./plot_data/experiment_5/experiment_5.csv",
+    "Experiment 6": "./plot_data/experiment_6/experiment_6.csv",
 }
 dataframe_descriptions = {
     "Experiment 1": "./plot_data/experiment_1/description_experiment_1.md",
     "Experiment 2": "./plot_data/experiment_2/description_experiment_2.md",
     "Experiment 3": "./plot_data/experiment_3/description_experiment_3.md",
+    "Experiment 4": "./plot_data/experiment_4/description_experiment_4.md",
+    "Experiment 5": "./plot_data/experiment_5/description_experiment_5.md",
+    "Experiment 6": "./plot_data/experiment_6/description_experiment_6.md",
+}
+experiments_name = {
+    "Experiment 1": "Experiment 1",
+    "Experiment 2": "Experiment 2",
+    "Experiment 3": "Experiment 3",
+    "Experiment 4": "RegressionRecommender with RandomForestsRegressor",
+    "Experiment 5": "RegressionRecommender with XGBoost",
+    "Experiment 6": "RegressionRecommender with SVR",
 }
 selected_dataframe = st.selectbox("Select Experiment", options=list(dataframe_options.keys()))
 
@@ -58,6 +72,7 @@ def load_data(path: str):
     return data
 
 def interactive_boxplot(data):
+    st.subheader(f":green[{experiments_name[selected_dataframe]}]")
     checkbox_col, boxplot_col = st.columns([1, 4])
     
     default_options = ['ACC', 'CC', 'DyS', 'HDy', 'MAX', 'MS', 'PACC', 'PCC', 'SMM', 'SORD', 'X']
